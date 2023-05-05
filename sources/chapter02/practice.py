@@ -1,6 +1,8 @@
 import numpy as np
 import cv2 as cv
 import sys
+import os
+os.chdir('C:/Users/qudgn/Computer-Vision-and-Deeplearning/sources/chapter02')
 
 # 문제 1
 a = np.array([400,52,'tiger','24',230])
@@ -75,3 +77,110 @@ while True:
     
 cap.release()                        # 카메라 연결 종료
 cv.destroyAllWindows()
+
+# 문제 6
+img = cv.imread('soccer.jpg')
+
+if img is None:
+    sys.exit('파일을 찾을 수 없습니다.')
+
+cv.rectangle(img, (250,120), (380,250), (0,0,255), 2)
+cv.putText(img, 'Soccer Ball', (270,100), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2)
+cv.arrowedLine(img, (315,120), (315,110), (255,255,255), 2, -1)
+
+cv.imshow('Draw', img)
+
+cv.waitKey()
+cv.destroyAllWindows()
+
+# 문제 7
+img = cv.imread('soccer.jpg')
+
+if img is None:
+    sys.exit('파일을 찾을 수 없습니다.')
+
+def draw(event, x, y, flags, param):
+    if event == cv.EVENT_LBUTTONDOWN:
+        cv.rectangle(img, (x,y), (x+100, y+100), (0,0,255), 2)
+    elif event == cv.EVENT_RBUTTONDOWN:
+        cv.circle(img, (x,y), 50, (255,0,0), 2)
+    
+    cv.imshow('Drawing', img)
+
+cv.namedWindow('Drawing')
+cv.imshow('Drawing', img)
+
+cv.setMouseCallback('Drawing', draw)
+
+while(True):
+    if cv.waitKey(1) == ord('q'):
+        cv.destroyAllWindows()
+        break
+
+# 문제 8
+img = cv.imread('soccer.jpg')
+
+if img is None:
+    sys.exit('파일을 찾을 수 없습니다.')
+
+def draw(event, x, y, flags, param):
+    global ix, iy
+
+    if event == cv.EVENT_LBUTTONDOWN:
+        ix,iy = x,y
+    elif event == cv.EVENT_LBUTTONUP:
+        cv.rectangle(img, (ix,iy), (x, y), (255,0,0), 2)
+    elif event == cv.EVENT_RBUTTONDOWN:
+        ix,iy = x,y
+    elif event == cv.EVENT_RBUTTONUP:
+        cv.circle(img, (ix,iy), abs(x-ix), (255,0,0), 2)
+    
+    cv.imshow('Drawing', img)
+
+cv.namedWindow('Drawing')
+cv.imshow('Drawing', img)
+
+cv.setMouseCallback('Drawing', draw)
+
+while(True):
+    if cv.waitKey(1) == ord('q'):
+        cv.destroyAllWindows()
+        break
+
+# 문제 9
+img = cv.imread('soccer.jpg')
+
+if img is None:
+    sys.exit('파일을 찾을 수 없습니다.')
+
+BrushSiz = 5
+LColor, RColor = (255,0,0), (0,0,255)
+
+def painting(event, x, y, flags, param):
+    if event == cv.EVENT_LBUTTONDOWN:
+        cv.circle(img, (x,y), BrushSiz, LColor, -1)
+    elif event == cv.EVENT_RBUTTONDOWN:
+        cv.circle(img, (x,y), BrushSiz, RColor, -1)
+    elif event == cv.EVENT_MOUSEMOVE and flags == cv.EVENT_FLAG_LBUTTON:
+        cv.circle(img, (x,y), BrushSiz, LColor, -1)
+    elif event == cv.EVENT_MOUSEMOVE and flags == cv.EVENT_FLAG_RBUTTON:
+        cv.circle(img, (x,y), BrushSiz, RColor, -1)
+
+    cv.imshow('Painting', img)
+
+cv.namedWindow('Painting')
+cv.imshow('Painting', img)
+
+cv.setMouseCallback('Painting', painting)
+
+while(True):
+    key = cv.waitKey(1)
+    if key == ord('+'):
+        BrushSiz += 1
+    elif key == ord('-'):
+        if BrushSiz <= 1:
+            print('더 이상 붓 크기를 줄이지 못합니다.')
+        else: BrushSiz -= 1
+    elif key == ord('q'):
+        cv.destroyAllWindows()
+        break
