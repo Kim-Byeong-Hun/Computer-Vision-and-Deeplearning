@@ -68,7 +68,7 @@ class SpecialEffect(QMainWindow):
         self.oil = cv.xphoto.oilPainting(self.img, 10, 1, cv.COLOR_BGR2Lab)
         cv.imshow('Oil painting', self.oil)
 
-    def saveFunction(self): # 현재 저장이 안되는 오류 발생
+    def saveFunction(self):
         fname = QFileDialog.getSaveFileName(self, '파일 저장', './')
 
         i = self.pickCombo.currentIndex() 
