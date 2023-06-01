@@ -127,7 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-./sources/chapter08/stanford_dogs/
+sources/chapter08/datasets/
 
 # Spyder project settings
 .spyderproject
