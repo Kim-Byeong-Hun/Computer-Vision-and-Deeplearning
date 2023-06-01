@@ -20,7 +20,6 @@ parts/
 sdist/
 var/
 wheels/
-stanford_dogs/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -128,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+./sources/chapter08/stanford_dogs/*
 
 # Spyder project settings
 .spyderproject
