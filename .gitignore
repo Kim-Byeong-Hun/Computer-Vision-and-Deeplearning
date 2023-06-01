@@ -20,6 +20,7 @@ parts/
 sdist/
 var/
 wheels/
+stanford_dogs/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
