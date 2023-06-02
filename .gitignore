@@ -128,6 +128,8 @@ ENV/
 env.bak/
 venv.bak/
 sources/chapter08/datasets/
+sources/chapter09/annotations/
+sources/chapter09/images/
 
 # Spyder project settings
 .spyderproject
@@ -162,3 +164,6 @@ cython_debug/
 sources/chapter08/cnn_for_stanford_dogs.h5
 *.cfg
 *.weights
+*.tar.gz
+*.h5
+*.mp4
