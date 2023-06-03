@@ -167,3 +167,4 @@ sources/chapter08/cnn_for_stanford_dogs.h5
 *.tar.gz
 *.h5
 *.mp4
+*.pb
